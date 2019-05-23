@@ -138,7 +138,9 @@
             "4",
             "8",
             "16",
-            "32"});
+            "32",
+            "64",
+            "128"});
             this.comboBoxFastResolution.Location = new System.Drawing.Point(258, 19);
             this.comboBoxFastResolution.Name = "comboBoxFastResolution";
             this.comboBoxFastResolution.Size = new System.Drawing.Size(121, 21);

@@ -28,21 +28,36 @@ namespace graphTest
         UInt32 MediumResolution;
         UInt32 SlowResolution;
 
+        string frame;
+
         int valueCounter = 0;
-        int[] values = new int[1024];
-        Series series = new Series("Dane1");
-        SerialPort serial;
+        double[] valuesCH0 = new double[65536];
+        double[] valuesCH1 = new double[65536];
+        double[] valuesCH2 = new double[65536];
+        double[] valuesCH3 = new double[65536];
+
+        Series seriesCH0 = new Series("DaneCH0");
+        Series seriesCH1 = new Series("DaneCH1");
+        Series seriesCH2 = new Series("DaneCH2");
+        Series seriesCH3 = new Series("DaneCH3");
 
         public MainForm()
         {
             InitializeComponent();
-            series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+            seriesCH0.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            seriesCH1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            seriesCH2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            seriesCH3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
             ArrayList dataTabl = new ArrayList();
-            chart1.Series.Add(series);
+            chart1.Series.Add(seriesCH0);
+            chart1.Series.Add(seriesCH1);
+            chart2.Series.Add(seriesCH2);
+            chart2.Series.Add(seriesCH3);
 
             loadSettings();
 
-            serial = serialPort1;
             var ports = SerialPort.GetPortNames();
             comboBoxSerialPort.DataSource = ports;
             comboBoxSerialPort.SelectedIndex = comboBoxSerialPort.FindString(Properties.Settings.Default.ComPort.ToString());
@@ -50,26 +65,42 @@ namespace graphTest
 
         private void buttonStartFast_Click(object sender, EventArgs e)
         {
-            series.Points.Clear();
-            valueCounter = 0;
-            Thread thread1 = new Thread(DoWork);
-            thread1.Start();
+            sendTask(FastDeadTime, FastResolution, FastAcumulate);
         }
 
-        public void DoWork()
+        private void buttonStartMedium_Click(object sender, EventArgs e)
         {
-            //foreach (int index in Enumerable.Range(1, 1000))
-            //{
-            //    Thread.Sleep(10);
-            //    serial.Write("B");
-            //}
-            serial.Write("OOMS");
+            sendTask(MediumDeadTime, MediumResolution, MediumAcumulate);
+        }
 
+        private void buttonStartSlow_Click(object sender, EventArgs e)
+        {
+            sendTask(SlowDeadTime, SlowResolution, SlowAcumulate);
+        }
+
+        private void clearSeries()
+        {
+            seriesCH0.Points.Clear();
+            seriesCH1.Points.Clear();
+            seriesCH2.Points.Clear();
+            seriesCH3.Points.Clear();
         }
 
         private void sendTask(UInt32 deadTime, UInt32 resolution, UInt32 accumulate)
         {
+            clearSeries();
 
+            valueCounter = 0;
+            frame = "";
+
+            try
+            {
+                serialPort1.Write("A" + deadTime.ToString("0000") + resolution.ToString("0000") + accumulate.ToString("0000") + "B");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void buttonOpenPort_Click(object sender, EventArgs e)
@@ -88,28 +119,37 @@ namespace graphTest
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
-            //liczba probek na jeden odczyt-- akumulacja
-            //czas pomiedzy punktami -- czas martwy/oczekiwania przestoju
-            //
-            // ustawienie rozdzielczosci skoku co 1 /2 / /4 /8 /16
             SettingsForm settingsForm = new SettingsForm(this);
             settingsForm.Show();
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            textBoxDelay.Invoke(new Action(delegate ()
+            this.Invoke(new Action(delegate ()
             {
-                String data = serialPort1.ReadExisting();
-                data = data.Substring(0, 5);
-                textBoxDelay.Text = data;
-                values[valueCounter] = Int32.Parse(data);
-                valueCounter++;
-                series.Points.Clear();
-                foreach (int val in values)
+                valueCounter = 0;
+                frame += serialPort1.ReadExisting();
+                string[] datas = frame.Split('X');
+                foreach(string data in datas)
                 {
-                    series.Points.Add(val);
+                    if (data.Length == 24 && data[0] =='Y')
+                    {
+                        string ch0val = data.Substring(1, 5);
+                        string ch1val = data.Substring(7, 5);
+                        string ch2val = data.Substring(13, 5);
+                        string ch3val = data.Substring(19, 5);
+                        //textBoxDelay.Text = data; //usunac
+                        // 15 / 4095
+                        valuesCH0[valueCounter] = Double.Parse(ch0val) * 0.0036630036630037;
+                        valuesCH1[valueCounter] = Double.Parse(ch1val) * 0.0036630036630037;
+                        valuesCH2[valueCounter] = Double.Parse(ch2val) * 0.0036630036630037;
+                        valuesCH3[valueCounter] = Double.Parse(ch3val) * 0.0036630036630037;
+
+                        valueCounter++;
+                    }
                 }
+                redrawCharts();
+                
             }));
         }
 
@@ -132,5 +172,44 @@ namespace graphTest
         {
             Properties.Settings.Default.ComPort = comboBoxSerialPort.SelectedValue.ToString();
         }
+        
+        private void redrawCharts()
+        {
+            clearSeries();
+            foreach (int val in Enumerable.Range(0, valueCounter))
+            {
+                if (checkBoxCH1.Checked)
+                    seriesCH0.Points.Add(valuesCH0[val]);
+                if (checkBoxCH2.Checked)
+                    seriesCH1.Points.Add(valuesCH1[val]);
+                if (checkBoxMARKER.Checked)
+                    seriesCH2.Points.Add(valuesCH2[val]);
+                if (checkBoxPOWER.Checked)
+                    seriesCH3.Points.Add(valuesCH3[val]);
+            }
+        }
+
+        private void checkBoxChart_CheckStateChanged(object sender, EventArgs e)
+        {
+            redrawCharts();
+        }
+
+
+        //public void callThread()
+        //{
+        //series.Points.Clear();
+        //valueCounter = 0;
+        //Thread thread1 = new Thread(DoWork);
+        //thread1.Start();
+        //}
+
+        //public void DoWork()
+        //{
+        //    foreach (int index in Enumerable.Range(1, 1000))
+        //    {
+        //        Thread.Sleep(10);
+        //        serial.Write("B");
+        //    }
+        //}
     }
 }

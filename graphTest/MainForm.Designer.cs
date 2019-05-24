@@ -99,6 +99,7 @@
             // 
             // buttonSettings
             // 
+            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSettings.Location = new System.Drawing.Point(852, 12);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.Size = new System.Drawing.Size(75, 23);
@@ -202,6 +203,7 @@
             this.textBoxDelay.Name = "textBoxDelay";
             this.textBoxDelay.Size = new System.Drawing.Size(146, 20);
             this.textBoxDelay.TabIndex = 12;
+            this.textBoxDelay.TextChanged += new System.EventHandler(this.textBoxDelay_TextChanged);
             // 
             // buttonOpenPort
             // 
@@ -233,15 +235,16 @@
             // 
             // comboBoxSerialPort
             // 
+            this.comboBoxSerialPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxSerialPort.FormattingEnabled = true;
             this.comboBoxSerialPort.Location = new System.Drawing.Point(979, 41);
             this.comboBoxSerialPort.Name = "comboBoxSerialPort";
             this.comboBoxSerialPort.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSerialPort.TabIndex = 18;
-            this.comboBoxSerialPort.SelectedValueChanged += new System.EventHandler(this.comboBoxSerialPort_SelectedValueChanged);
             // 
             // linkLabel1
             // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(973, 495);
             this.linkLabel1.Name = "linkLabel1";

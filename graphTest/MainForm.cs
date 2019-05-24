@@ -58,9 +58,11 @@ namespace graphTest
 
             loadSettings();
 
+
             var ports = SerialPort.GetPortNames();
             comboBoxSerialPort.DataSource = ports;
-            comboBoxSerialPort.SelectedIndex = comboBoxSerialPort.FindString(Properties.Settings.Default.ComPort.ToString());
+
+            comboBoxSerialPort.SelectedIndex = comboBoxSerialPort.FindString(Properties.Settings.Default.ComPort);
         }
 
         private void buttonStartFast_Click(object sender, EventArgs e)
@@ -105,6 +107,11 @@ namespace graphTest
 
         private void buttonOpenPort_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.ComPort != comboBoxSerialPort.SelectedValue.ToString())
+            {
+                Properties.Settings.Default.ComPort = comboBoxSerialPort.SelectedValue.ToString();
+                Properties.Settings.Default.Save();
+            }
             try
             {
                 serialPort1.PortName = comboBoxSerialPort.SelectedItem.ToString();
@@ -138,7 +145,6 @@ namespace graphTest
                         string ch1val = data.Substring(7, 5);
                         string ch2val = data.Substring(13, 5);
                         string ch3val = data.Substring(19, 5);
-                        //textBoxDelay.Text = data; //usunac
                         // 15 / 4095
                         valuesCH0[valueCounter] = Double.Parse(ch0val) * 0.0036630036630037;
                         valuesCH1[valueCounter] = Double.Parse(ch1val) * 0.0036630036630037;
@@ -167,11 +173,6 @@ namespace graphTest
             MediumResolution    = Properties.Settings.Default.MediumResolution;
             SlowResolution      = Properties.Settings.Default.SlowResolution;
         }
-
-        private void comboBoxSerialPort_SelectedValueChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.ComPort = comboBoxSerialPort.SelectedValue.ToString();
-        }
         
         private void redrawCharts()
         {
@@ -192,6 +193,12 @@ namespace graphTest
         private void checkBoxChart_CheckStateChanged(object sender, EventArgs e)
         {
             redrawCharts();
+        }
+
+        private void textBoxDelay_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ComPort = textBoxDelay.Text;
+            Properties.Settings.Default.Save();
         }
 
 

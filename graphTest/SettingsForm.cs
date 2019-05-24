@@ -44,6 +44,8 @@ namespace graphTest
             Properties.Settings.Default.FastResolution = Convert.ToUInt16(comboBoxFastResolution.SelectedItem.ToString());
             Properties.Settings.Default.MediumResolution = Convert.ToUInt16(comboBoxMediumResolution.SelectedItem.ToString());
             Properties.Settings.Default.SlowResolution = Convert.ToUInt16(comboBoxSlowResolution.SelectedItem);
+
+            Properties.Settings.Default.Save();
             MessageBox.Show("Pomyślnie zapisano!");
             mainForm.loadSettings();
             this.Close();

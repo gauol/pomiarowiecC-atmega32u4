@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,11 +29,18 @@ namespace graphTest
             comboBoxFastResolution.SelectedIndex = comboBoxFastResolution.FindString(Properties.Settings.Default.FastResolution.ToString());
             comboBoxMediumResolution.SelectedIndex = comboBoxMediumResolution.FindString(Properties.Settings.Default.MediumResolution.ToString());
             comboBoxSlowResolution.SelectedIndex = comboBoxSlowResolution.FindString(Properties.Settings.Default.SlowResolution.ToString());
+
+            waveMeterCOMportTextBox.Text = Properties.Settings.Default.WaveMeterComPort;
+
             this.mainForm = mainForm;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.FastResolution = Convert.ToUInt16(comboBoxFastResolution.SelectedItem.ToString());
+            Properties.Settings.Default.MediumResolution = Convert.ToUInt16(comboBoxMediumResolution.SelectedItem.ToString());
+            Properties.Settings.Default.SlowResolution = Convert.ToUInt16(comboBoxSlowResolution.SelectedItem);
+
             Properties.Settings.Default.FastAcumulate   = (UInt16)numericUpDownFastAcumulate.Value;
             Properties.Settings.Default.MediumAcumulate = (UInt16)numericUpDownMediumAcumulate.Value;
             Properties.Settings.Default.SlowAcumulate   = (UInt16)numericUpDownSlowAcumulate.Value;
@@ -41,14 +49,30 @@ namespace graphTest
             Properties.Settings.Default.MediumDeadTime = (UInt16)numericUpDownMediumDeadTime.Value;
             Properties.Settings.Default.SlowDeadTime = (UInt16)numericUpDownSlowDeadTime.Value;
 
-            Properties.Settings.Default.FastResolution = Convert.ToUInt16(comboBoxFastResolution.SelectedItem.ToString());
-            Properties.Settings.Default.MediumResolution = Convert.ToUInt16(comboBoxMediumResolution.SelectedItem.ToString());
-            Properties.Settings.Default.SlowResolution = Convert.ToUInt16(comboBoxSlowResolution.SelectedItem);
+            Properties.Settings.Default.WaveMeterComPort = waveMeterCOMportTextBox.Text;
 
             Properties.Settings.Default.Save();
             MessageBox.Show("Pomyślnie zapisano!");
             mainForm.loadSettings();
             this.Close();
+        }
+
+        private void updateTimes(object sender, EventArgs e)
+        {
+            fastTimeLabel.Text = (
+               (65536 / Convert.ToInt16(comboBoxFastResolution.SelectedItem.ToString())) *
+               (numericUpDownFastAcumulate.Value + numericUpDownFastDeadTime.Value)
+                ).ToString("# ### ### ### ###");
+
+            mediumTimeLabel.Text = (
+               (65536 / Convert.ToInt16(comboBoxMediumResolution.SelectedItem.ToString())) *
+               ( numericUpDownMediumAcumulate.Value + numericUpDownMediumDeadTime.Value)
+                ).ToString("# ### ### ### ###");
+
+            slowTimeLabel.Text = (
+               (65536 / Convert.ToInt16(comboBoxSlowResolution.SelectedItem.ToString())) *
+               (numericUpDownSlowAcumulate.Value + numericUpDownSlowDeadTime.Value)
+                ).ToString("# ### ### ### ###");
 
         }
     }

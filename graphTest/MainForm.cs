@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace graphTest
 {
     public partial class MainForm : Form
     {
+        string waveLenght;
+
         UInt32 FastAcumulate;
         UInt32 MediumAcumulate;
         UInt32 SlowAcumulate;
@@ -38,8 +41,8 @@ namespace graphTest
 
         Series seriesCH0 = new Series("DaneCH0");
         Series seriesCH1 = new Series("DaneCH1");
-        Series seriesCH2 = new Series("DaneCH2");
-        Series seriesCH3 = new Series("DaneCH3");
+        Series seriesCH2 = new Series("Marker CH2");
+        Series seriesCH3 = new Series("Moc CH3");
 
         public MainForm()
         {
@@ -96,7 +99,7 @@ namespace graphTest
             frame = "";
 
             try
-            {
+            {//A000100640001B   - ramka testujaca
                 serialPort1.Write("A" + deadTime.ToString("0000") + resolution.ToString("0000") + accumulate.ToString("0000") + "B");
             }
             catch (Exception e)
@@ -146,10 +149,15 @@ namespace graphTest
                         string ch2val = data.Substring(13, 5);
                         string ch3val = data.Substring(19, 5);
                         // 15 / 4095
-                        valuesCH0[valueCounter] = Double.Parse(ch0val) * 0.0036630036630037;
-                        valuesCH1[valueCounter] = Double.Parse(ch1val) * 0.0036630036630037;
-                        valuesCH2[valueCounter] = Double.Parse(ch2val) * 0.0036630036630037;
-                        valuesCH3[valueCounter] = Double.Parse(ch3val) * 0.0036630036630037;
+                        //valuesCH0[valueCounter] = Double.Parse(ch0val) * 0.0036630036630037;
+                        //valuesCH1[valueCounter] = Double.Parse(ch1val) * 0.0036630036630037;
+                        //valuesCH2[valueCounter] = Double.Parse(ch2val) * 0.0036630036630037;
+                        //valuesCH3[valueCounter] = Double.Parse(ch3val) * 0.0036630036630037;
+
+                        valuesCH0[valueCounter] = Double.Parse(ch0val) ;
+                        valuesCH1[valueCounter] = Double.Parse(ch1val) ;
+                        valuesCH2[valueCounter] = Double.Parse(ch2val) ;
+                        valuesCH3[valueCounter] = Double.Parse(ch3val) ;
 
                         valueCounter++;
                     }
@@ -197,8 +205,33 @@ namespace graphTest
 
         private void textBoxDelay_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ComPort = textBoxDelay.Text;
+            Properties.Settings.Default.ComPort = fileNameTextBox.Text;
             Properties.Settings.Default.Save();
+        }
+
+        private void saveToFileButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Pomiary";
+
+                string date = DateTime.Now.ToString("HH.mm.ss - d/M/yyyy");
+
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileNameTextBox.Text + " " + date + waveLenght)))
+                {
+                    outputFile.WriteLine("#" + waveLenght);
+                    outputFile.WriteLine("#liczba falowa");
+                    foreach (int val in Enumerable.Range(0, valueCounter))
+                    {
+                        outputFile.WriteLine(valuesCH0[val]);
+                    }
+                }
+                MessageBox.Show("Zapis pomyślny");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
         }
 
 

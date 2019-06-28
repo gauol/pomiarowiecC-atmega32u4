@@ -142,5 +142,17 @@ namespace graphTest.Properties {
                 this["ComPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM4")]
+        public string WaveMeterComPort {
+            get {
+                return ((string)(this["WaveMeterComPort"]));
+            }
+            set {
+                this["WaveMeterComPort"] = value;
+            }
+        }
     }
 }

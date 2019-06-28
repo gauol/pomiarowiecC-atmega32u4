@@ -32,5 +32,8 @@
     <Setting Name="ComPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM5</Value>
     </Setting>
+    <Setting Name="WaveMeterComPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

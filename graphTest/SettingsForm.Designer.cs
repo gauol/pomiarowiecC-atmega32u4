@@ -33,24 +33,25 @@
             this.numericUpDownFastAcumulate = new System.Windows.Forms.NumericUpDown();
             this.labelFastAcumulate = new System.Windows.Forms.Label();
             this.groupBoxFast = new System.Windows.Forms.GroupBox();
+            this.fastTimeLabel = new System.Windows.Forms.Label();
             this.comboBoxFastResolution = new System.Windows.Forms.ComboBox();
             this.numericUpDownFastDeadTime = new System.Windows.Forms.NumericUpDown();
             this.labelDeadTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mediumTimeLabel = new System.Windows.Forms.Label();
             this.comboBoxMediumResolution = new System.Windows.Forms.ComboBox();
             this.numericUpDownMediumDeadTime = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMediumAcumulate = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.slowTimeLabel = new System.Windows.Forms.Label();
             this.comboBoxSlowResolution = new System.Windows.Forms.ComboBox();
             this.numericUpDownSlowDeadTime = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownSlowAcumulate = new System.Windows.Forms.NumericUpDown();
             this.waveMeterTextBoxLabel = new System.Windows.Forms.Label();
             this.waveMeterCOMportTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.fastTimeLabel = new System.Windows.Forms.Label();
-            this.mediumTimeLabel = new System.Windows.Forms.Label();
-            this.slowTimeLabel = new System.Windows.Forms.Label();
+            this.autoConnectWaveMetercheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFastAcumulate)).BeginInit();
             this.groupBoxFast.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFastDeadTime)).BeginInit();
@@ -64,9 +65,10 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(427, 385);
+            this.buttonSave.Location = new System.Drawing.Point(569, 474);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(100, 28);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Zapisz";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -74,22 +76,24 @@
             // 
             // numericUpDownFastAcumulate
             // 
-            this.numericUpDownFastAcumulate.Location = new System.Drawing.Point(6, 19);
+            this.numericUpDownFastAcumulate.Location = new System.Drawing.Point(8, 23);
+            this.numericUpDownFastAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownFastAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownFastAcumulate.Name = "numericUpDownFastAcumulate";
-            this.numericUpDownFastAcumulate.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownFastAcumulate.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownFastAcumulate.TabIndex = 1;
             // 
             // labelFastAcumulate
             // 
             this.labelFastAcumulate.AutoSize = true;
-            this.labelFastAcumulate.Location = new System.Drawing.Point(76, 9);
+            this.labelFastAcumulate.Location = new System.Drawing.Point(101, 11);
+            this.labelFastAcumulate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelFastAcumulate.Name = "labelFastAcumulate";
-            this.labelFastAcumulate.Size = new System.Drawing.Size(62, 13);
+            this.labelFastAcumulate.Size = new System.Drawing.Size(80, 17);
             this.labelFastAcumulate.TabIndex = 2;
             this.labelFastAcumulate.Text = "Akumulacja";
             // 
@@ -99,12 +103,25 @@
             this.groupBoxFast.Controls.Add(this.comboBoxFastResolution);
             this.groupBoxFast.Controls.Add(this.numericUpDownFastDeadTime);
             this.groupBoxFast.Controls.Add(this.numericUpDownFastAcumulate);
-            this.groupBoxFast.Location = new System.Drawing.Point(12, 68);
+            this.groupBoxFast.Location = new System.Drawing.Point(16, 84);
+            this.groupBoxFast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxFast.Name = "groupBoxFast";
-            this.groupBoxFast.Size = new System.Drawing.Size(623, 55);
+            this.groupBoxFast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFast.Size = new System.Drawing.Size(831, 68);
             this.groupBoxFast.TabIndex = 3;
             this.groupBoxFast.TabStop = false;
             this.groupBoxFast.Text = "Szybki";
+            // 
+            // fastTimeLabel
+            // 
+            this.fastTimeLabel.AutoSize = true;
+            this.fastTimeLabel.Location = new System.Drawing.Point(600, 33);
+            this.fastTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.fastTimeLabel.Name = "fastTimeLabel";
+            this.fastTimeLabel.Size = new System.Drawing.Size(30, 17);
+            this.fastTimeLabel.TabIndex = 7;
+            this.fastTimeLabel.Text = "Klik";
+            this.fastTimeLabel.Click += new System.EventHandler(this.updateTimes);
             // 
             // comboBoxFastResolution
             // 
@@ -118,38 +135,42 @@
             "32",
             "64",
             "128"});
-            this.comboBoxFastResolution.Location = new System.Drawing.Point(258, 19);
+            this.comboBoxFastResolution.Location = new System.Drawing.Point(344, 23);
+            this.comboBoxFastResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxFastResolution.Name = "comboBoxFastResolution";
-            this.comboBoxFastResolution.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxFastResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxFastResolution.TabIndex = 6;
             // 
             // numericUpDownFastDeadTime
             // 
-            this.numericUpDownFastDeadTime.Location = new System.Drawing.Point(132, 19);
+            this.numericUpDownFastDeadTime.Location = new System.Drawing.Point(176, 23);
+            this.numericUpDownFastDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownFastDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownFastDeadTime.Name = "numericUpDownFastDeadTime";
-            this.numericUpDownFastDeadTime.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownFastDeadTime.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownFastDeadTime.TabIndex = 3;
             // 
             // labelDeadTime
             // 
             this.labelDeadTime.AutoSize = true;
-            this.labelDeadTime.Location = new System.Drawing.Point(189, 9);
+            this.labelDeadTime.Location = new System.Drawing.Point(252, 11);
+            this.labelDeadTime.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDeadTime.Name = "labelDeadTime";
-            this.labelDeadTime.Size = new System.Drawing.Size(75, 13);
+            this.labelDeadTime.Size = new System.Drawing.Size(101, 17);
             this.labelDeadTime.TabIndex = 4;
             this.labelDeadTime.Text = "Czas przestoju";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(284, 9);
+            this.label1.Location = new System.Drawing.Point(379, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 13);
+            this.label1.Size = new System.Drawing.Size(139, 17);
             this.label1.TabIndex = 5;
             this.label1.Text = "Roździelczość skoku";
             // 
@@ -159,12 +180,25 @@
             this.groupBox1.Controls.Add(this.comboBoxMediumResolution);
             this.groupBox1.Controls.Add(this.numericUpDownMediumDeadTime);
             this.groupBox1.Controls.Add(this.numericUpDownMediumAcumulate);
-            this.groupBox1.Location = new System.Drawing.Point(12, 129);
+            this.groupBox1.Location = new System.Drawing.Point(16, 159);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(623, 55);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(831, 68);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sredni";
+            // 
+            // mediumTimeLabel
+            // 
+            this.mediumTimeLabel.AutoSize = true;
+            this.mediumTimeLabel.Location = new System.Drawing.Point(600, 33);
+            this.mediumTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.mediumTimeLabel.Name = "mediumTimeLabel";
+            this.mediumTimeLabel.Size = new System.Drawing.Size(30, 17);
+            this.mediumTimeLabel.TabIndex = 8;
+            this.mediumTimeLabel.Text = "Klik";
+            this.mediumTimeLabel.Click += new System.EventHandler(this.updateTimes);
             // 
             // comboBoxMediumResolution
             // 
@@ -176,33 +210,36 @@
             "8",
             "16",
             "32"});
-            this.comboBoxMediumResolution.Location = new System.Drawing.Point(258, 19);
+            this.comboBoxMediumResolution.Location = new System.Drawing.Point(344, 23);
+            this.comboBoxMediumResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxMediumResolution.Name = "comboBoxMediumResolution";
-            this.comboBoxMediumResolution.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxMediumResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxMediumResolution.TabIndex = 6;
             // 
             // numericUpDownMediumDeadTime
             // 
-            this.numericUpDownMediumDeadTime.Location = new System.Drawing.Point(132, 19);
+            this.numericUpDownMediumDeadTime.Location = new System.Drawing.Point(176, 23);
+            this.numericUpDownMediumDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownMediumDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownMediumDeadTime.Name = "numericUpDownMediumDeadTime";
-            this.numericUpDownMediumDeadTime.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMediumDeadTime.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownMediumDeadTime.TabIndex = 3;
             // 
             // numericUpDownMediumAcumulate
             // 
-            this.numericUpDownMediumAcumulate.Location = new System.Drawing.Point(6, 19);
+            this.numericUpDownMediumAcumulate.Location = new System.Drawing.Point(8, 23);
+            this.numericUpDownMediumAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownMediumAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownMediumAcumulate.Name = "numericUpDownMediumAcumulate";
-            this.numericUpDownMediumAcumulate.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownMediumAcumulate.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownMediumAcumulate.TabIndex = 1;
             // 
             // groupBox2
@@ -211,12 +248,25 @@
             this.groupBox2.Controls.Add(this.comboBoxSlowResolution);
             this.groupBox2.Controls.Add(this.numericUpDownSlowDeadTime);
             this.groupBox2.Controls.Add(this.numericUpDownSlowAcumulate);
-            this.groupBox2.Location = new System.Drawing.Point(12, 190);
+            this.groupBox2.Location = new System.Drawing.Point(16, 234);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(623, 55);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(831, 68);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Wolny";
+            // 
+            // slowTimeLabel
+            // 
+            this.slowTimeLabel.AutoSize = true;
+            this.slowTimeLabel.Location = new System.Drawing.Point(600, 33);
+            this.slowTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.slowTimeLabel.Name = "slowTimeLabel";
+            this.slowTimeLabel.Size = new System.Drawing.Size(30, 17);
+            this.slowTimeLabel.TabIndex = 8;
+            this.slowTimeLabel.Text = "Klik";
+            this.slowTimeLabel.Click += new System.EventHandler(this.updateTimes);
             // 
             // comboBoxSlowResolution
             // 
@@ -228,96 +278,83 @@
             "8",
             "16",
             "32"});
-            this.comboBoxSlowResolution.Location = new System.Drawing.Point(258, 19);
+            this.comboBoxSlowResolution.Location = new System.Drawing.Point(344, 23);
+            this.comboBoxSlowResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxSlowResolution.Name = "comboBoxSlowResolution";
-            this.comboBoxSlowResolution.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSlowResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSlowResolution.TabIndex = 6;
             // 
             // numericUpDownSlowDeadTime
             // 
-            this.numericUpDownSlowDeadTime.Location = new System.Drawing.Point(132, 19);
+            this.numericUpDownSlowDeadTime.Location = new System.Drawing.Point(176, 23);
+            this.numericUpDownSlowDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownSlowDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownSlowDeadTime.Name = "numericUpDownSlowDeadTime";
-            this.numericUpDownSlowDeadTime.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownSlowDeadTime.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownSlowDeadTime.TabIndex = 3;
             // 
             // numericUpDownSlowAcumulate
             // 
-            this.numericUpDownSlowAcumulate.Location = new System.Drawing.Point(6, 19);
+            this.numericUpDownSlowAcumulate.Location = new System.Drawing.Point(8, 23);
+            this.numericUpDownSlowAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numericUpDownSlowAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.numericUpDownSlowAcumulate.Name = "numericUpDownSlowAcumulate";
-            this.numericUpDownSlowAcumulate.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownSlowAcumulate.Size = new System.Drawing.Size(160, 22);
             this.numericUpDownSlowAcumulate.TabIndex = 1;
             // 
             // waveMeterTextBoxLabel
             // 
             this.waveMeterTextBoxLabel.AutoSize = true;
-            this.waveMeterTextBoxLabel.Location = new System.Drawing.Point(18, 267);
+            this.waveMeterTextBoxLabel.Location = new System.Drawing.Point(24, 329);
+            this.waveMeterTextBoxLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.waveMeterTextBoxLabel.Name = "waveMeterTextBoxLabel";
-            this.waveMeterTextBoxLabel.Size = new System.Drawing.Size(155, 13);
+            this.waveMeterTextBoxLabel.Size = new System.Drawing.Size(204, 17);
             this.waveMeterTextBoxLabel.TabIndex = 8;
             this.waveMeterTextBoxLabel.Text = "Port COM miernika długości fali";
             // 
             // waveMeterCOMportTextBox
             // 
-            this.waveMeterCOMportTextBox.Location = new System.Drawing.Point(179, 264);
+            this.waveMeterCOMportTextBox.Location = new System.Drawing.Point(239, 325);
+            this.waveMeterCOMportTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.waveMeterCOMportTextBox.Name = "waveMeterCOMportTextBox";
-            this.waveMeterCOMportTextBox.Size = new System.Drawing.Size(100, 20);
+            this.waveMeterCOMportTextBox.Size = new System.Drawing.Size(132, 22);
             this.waveMeterCOMportTextBox.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(462, 9);
+            this.label2.Location = new System.Drawing.Point(616, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 13);
+            this.label2.Size = new System.Drawing.Size(199, 17);
             this.label2.TabIndex = 7;
             this.label2.Text = "Oriętacyjny czas pomiaru (ms)";
             // 
-            // fastTimeLabel
+            // autoConnectWaveMetercheckBox
             // 
-            this.fastTimeLabel.AutoSize = true;
-            this.fastTimeLabel.Location = new System.Drawing.Point(450, 27);
-            this.fastTimeLabel.Name = "fastTimeLabel";
-            this.fastTimeLabel.Size = new System.Drawing.Size(24, 13);
-            this.fastTimeLabel.TabIndex = 7;
-            this.fastTimeLabel.Text = "Klik";
-            this.fastTimeLabel.Click += new System.EventHandler(this.updateTimes);
-            // 
-            // mediumTimeLabel
-            // 
-            this.mediumTimeLabel.AutoSize = true;
-            this.mediumTimeLabel.Location = new System.Drawing.Point(450, 27);
-            this.mediumTimeLabel.Name = "mediumTimeLabel";
-            this.mediumTimeLabel.Size = new System.Drawing.Size(24, 13);
-            this.mediumTimeLabel.TabIndex = 8;
-            this.mediumTimeLabel.Text = "Klik";
-            this.mediumTimeLabel.Click += new System.EventHandler(this.updateTimes);
-            // 
-            // slowTimeLabel
-            // 
-            this.slowTimeLabel.AutoSize = true;
-            this.slowTimeLabel.Location = new System.Drawing.Point(450, 27);
-            this.slowTimeLabel.Name = "slowTimeLabel";
-            this.slowTimeLabel.Size = new System.Drawing.Size(24, 13);
-            this.slowTimeLabel.TabIndex = 8;
-            this.slowTimeLabel.Text = "Klik";
-            this.slowTimeLabel.Click += new System.EventHandler(this.updateTimes);
+            this.autoConnectWaveMetercheckBox.AutoSize = true;
+            this.autoConnectWaveMetercheckBox.Location = new System.Drawing.Point(27, 361);
+            this.autoConnectWaveMetercheckBox.Name = "autoConnectWaveMetercheckBox";
+            this.autoConnectWaveMetercheckBox.Size = new System.Drawing.Size(327, 21);
+            this.autoConnectWaveMetercheckBox.TabIndex = 11;
+            this.autoConnectWaveMetercheckBox.Text = "Automatycznie połącz z miernikiem dlugości fali";
+            this.autoConnectWaveMetercheckBox.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(711, 420);
+            this.ClientSize = new System.Drawing.Size(948, 517);
+            this.Controls.Add(this.autoConnectWaveMetercheckBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.waveMeterCOMportTextBox);
             this.Controls.Add(this.waveMeterTextBoxLabel);
@@ -330,6 +367,7 @@
             this.Controls.Add(this.labelDeadTime);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SettingsForm";
             this.Text = "Ustawienia";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFastAcumulate)).EndInit();
@@ -373,5 +411,6 @@
         private System.Windows.Forms.Label mediumTimeLabel;
         private System.Windows.Forms.Label slowTimeLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox autoConnectWaveMetercheckBox;
     }
 }

@@ -154,5 +154,17 @@ namespace graphTest.Properties {
                 this["WaveMeterComPort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool autoConnectWaveMeter {
+            get {
+                return ((bool)(this["autoConnectWaveMeter"]));
+            }
+            set {
+                this["autoConnectWaveMeter"] = value;
+            }
+        }
     }
 }

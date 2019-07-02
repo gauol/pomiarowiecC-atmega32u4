@@ -52,6 +52,13 @@
             this.comboBoxSerialPort = new System.Windows.Forms.ComboBox();
             this.saveToFileButton = new System.Windows.Forms.Button();
             this.fileNameLabel = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.saveToMESbutton = new System.Windows.Forms.Button();
+            this.openFileButton = new System.Windows.Forms.Button();
+            this.openMESbutton = new System.Windows.Forms.Button();
+            this.WaveLenghtLabel = new System.Windows.Forms.Label();
+            this.WMserialPort = new System.IO.Ports.SerialPort(this.components);
+            this.WLInforLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -62,6 +69,10 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.AxisX.MajorGrid.LineWidth = 0;
+            chartArea1.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea1.AxisY.MajorGrid.LineWidth = 0;
+            chartArea1.AxisY2.MajorGrid.LineWidth = 0;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
@@ -75,9 +86,9 @@
             // buttonStartFast
             // 
             this.buttonStartFast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStartFast.Location = new System.Drawing.Point(1004, 553);
+            this.buttonStartFast.Location = new System.Drawing.Point(1004, 510);
             this.buttonStartFast.Name = "buttonStartFast";
-            this.buttonStartFast.Size = new System.Drawing.Size(96, 23);
+            this.buttonStartFast.Size = new System.Drawing.Size(96, 66);
             this.buttonStartFast.TabIndex = 1;
             this.buttonStartFast.Text = "Start szybki";
             this.buttonStartFast.UseVisualStyleBackColor = true;
@@ -88,6 +99,10 @@
             this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea2.AxisX.MajorGrid.LineWidth = 0;
+            chartArea2.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea2.AxisY.MajorGrid.LineWidth = 0;
+            chartArea2.AxisY2.MajorGrid.LineWidth = 0;
             chartArea2.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
@@ -141,7 +156,7 @@
             this.checkBoxCH1.AutoSize = true;
             this.checkBoxCH1.Checked = true;
             this.checkBoxCH1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH1.Location = new System.Drawing.Point(842, 86);
+            this.checkBoxCH1.Location = new System.Drawing.Point(842, 68);
             this.checkBoxCH1.Name = "checkBoxCH1";
             this.checkBoxCH1.Size = new System.Drawing.Size(57, 21);
             this.checkBoxCH1.TabIndex = 6;
@@ -155,7 +170,7 @@
             this.checkBoxCH2.AutoSize = true;
             this.checkBoxCH2.Checked = true;
             this.checkBoxCH2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH2.Location = new System.Drawing.Point(842, 113);
+            this.checkBoxCH2.Location = new System.Drawing.Point(842, 95);
             this.checkBoxCH2.Name = "checkBoxCH2";
             this.checkBoxCH2.Size = new System.Drawing.Size(57, 21);
             this.checkBoxCH2.TabIndex = 7;
@@ -166,9 +181,9 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(1004, 524);
+            this.button3.Location = new System.Drawing.Point(1004, 428);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 23);
+            this.button3.Size = new System.Drawing.Size(96, 66);
             this.button3.TabIndex = 10;
             this.button3.Text = "Start sredni";
             this.button3.UseVisualStyleBackColor = true;
@@ -177,9 +192,9 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(1004, 495);
+            this.button4.Location = new System.Drawing.Point(1004, 345);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 23);
+            this.button4.Size = new System.Drawing.Size(96, 63);
             this.button4.TabIndex = 11;
             this.button4.Text = "Start wolny";
             this.button4.UseVisualStyleBackColor = true;
@@ -262,10 +277,78 @@
             this.fileNameLabel.TabIndex = 20;
             this.fileNameLabel.Text = "Nazwa Pliku";
             // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(1004, 269);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(96, 41);
+            this.stopButton.TabIndex = 21;
+            this.stopButton.Text = "STOP!";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // saveToMESbutton
+            // 
+            this.saveToMESbutton.Location = new System.Drawing.Point(979, 173);
+            this.saveToMESbutton.Name = "saveToMESbutton";
+            this.saveToMESbutton.Size = new System.Drawing.Size(121, 23);
+            this.saveToMESbutton.TabIndex = 22;
+            this.saveToMESbutton.Text = "Zapisz do MES";
+            this.saveToMESbutton.UseVisualStyleBackColor = true;
+            this.saveToMESbutton.Click += new System.EventHandler(this.saveToMesFileButton_Click);
+            // 
+            // openFileButton
+            // 
+            this.openFileButton.Location = new System.Drawing.Point(852, 143);
+            this.openFileButton.Name = "openFileButton";
+            this.openFileButton.Size = new System.Drawing.Size(121, 23);
+            this.openFileButton.TabIndex = 23;
+            this.openFileButton.Text = "Otwórz plik";
+            this.openFileButton.UseVisualStyleBackColor = true;
+            this.openFileButton.Click += new System.EventHandler(this.openFileButton_Click);
+            // 
+            // openMESbutton
+            // 
+            this.openMESbutton.Location = new System.Drawing.Point(852, 173);
+            this.openMESbutton.Name = "openMESbutton";
+            this.openMESbutton.Size = new System.Drawing.Size(121, 23);
+            this.openMESbutton.TabIndex = 24;
+            this.openMESbutton.Text = "Otwórz MES";
+            this.openMESbutton.UseVisualStyleBackColor = true;
+            this.openMESbutton.Click += new System.EventHandler(this.openMesFileButton_Click);
+            // 
+            // WaveLenghtLabel
+            // 
+            this.WaveLenghtLabel.AutoSize = true;
+            this.WaveLenghtLabel.Location = new System.Drawing.Point(842, 269);
+            this.WaveLenghtLabel.Name = "WaveLenghtLabel";
+            this.WaveLenghtLabel.Size = new System.Drawing.Size(16, 17);
+            this.WaveLenghtLabel.TabIndex = 25;
+            this.WaveLenghtLabel.Text = "0";
+            // 
+            // WMserialPort
+            // 
+            this.WMserialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.WMserialPort_DataReceived);
+            // 
+            // WLInforLabel
+            // 
+            this.WLInforLabel.AutoSize = true;
+            this.WLInforLabel.Location = new System.Drawing.Point(842, 249);
+            this.WLInforLabel.Name = "WLInforLabel";
+            this.WLInforLabel.Size = new System.Drawing.Size(81, 17);
+            this.WLInforLabel.TabIndex = 26;
+            this.WLInforLabel.Text = "Długość fali";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1112, 591);
+            this.Controls.Add(this.WLInforLabel);
+            this.Controls.Add(this.WaveLenghtLabel);
+            this.Controls.Add(this.openMESbutton);
+            this.Controls.Add(this.openFileButton);
+            this.Controls.Add(this.saveToMESbutton);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.saveToFileButton);
             this.Controls.Add(this.comboBoxSerialPort);
@@ -311,6 +394,13 @@
         private System.Windows.Forms.ComboBox comboBoxSerialPort;
         private System.Windows.Forms.Button saveToFileButton;
         private System.Windows.Forms.Label fileNameLabel;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button saveToMESbutton;
+        private System.Windows.Forms.Button openFileButton;
+        private System.Windows.Forms.Button openMESbutton;
+        private System.Windows.Forms.Label WaveLenghtLabel;
+        private System.IO.Ports.SerialPort WMserialPort;
+        private System.Windows.Forms.Label WLInforLabel;
     }
 }
 

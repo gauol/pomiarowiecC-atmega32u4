@@ -31,6 +31,7 @@ namespace graphTest
             comboBoxSlowResolution.SelectedIndex = comboBoxSlowResolution.FindString(Properties.Settings.Default.SlowResolution.ToString());
 
             waveMeterCOMportTextBox.Text = Properties.Settings.Default.WaveMeterComPort;
+            autoConnectWaveMetercheckBox.Checked = Properties.Settings.Default.autoConnectWaveMeter;
 
             this.mainForm = mainForm;
         }
@@ -50,6 +51,7 @@ namespace graphTest
             Properties.Settings.Default.SlowDeadTime = (UInt16)numericUpDownSlowDeadTime.Value;
 
             Properties.Settings.Default.WaveMeterComPort = waveMeterCOMportTextBox.Text;
+            Properties.Settings.Default.autoConnectWaveMeter = autoConnectWaveMetercheckBox.Checked;
 
             Properties.Settings.Default.Save();
             MessageBox.Show("Pomyślnie zapisano!");
@@ -59,20 +61,14 @@ namespace graphTest
 
         private void updateTimes(object sender, EventArgs e)
         {
-            fastTimeLabel.Text = (
-               (65536 / Convert.ToInt16(comboBoxFastResolution.SelectedItem.ToString())) *
-               (numericUpDownFastAcumulate.Value + numericUpDownFastDeadTime.Value)
-                ).ToString("# ### ### ### ###");
+            decimal fastTime = ((65536 / Convert.ToInt16(comboBoxFastResolution.SelectedItem.ToString())) *(numericUpDownFastAcumulate.Value + 1 + numericUpDownFastDeadTime.Value));
+            fastTimeLabel.Text = fastTime.ToString("# ### ### ### ###") + " (" + (fastTime /1000 / 60).ToString("0.##") + "min)";
 
-            mediumTimeLabel.Text = (
-               (65536 / Convert.ToInt16(comboBoxMediumResolution.SelectedItem.ToString())) *
-               ( numericUpDownMediumAcumulate.Value + numericUpDownMediumDeadTime.Value)
-                ).ToString("# ### ### ### ###");
+            decimal mediumTime = (65536 / Convert.ToInt16(comboBoxMediumResolution.SelectedItem.ToString())) * (numericUpDownMediumAcumulate.Value + numericUpDownMediumDeadTime.Value);
 
-            slowTimeLabel.Text = (
-               (65536 / Convert.ToInt16(comboBoxSlowResolution.SelectedItem.ToString())) *
-               (numericUpDownSlowAcumulate.Value + numericUpDownSlowDeadTime.Value)
-                ).ToString("# ### ### ### ###");
+            mediumTimeLabel.Text = (mediumTime).ToString("# ### ### ### ###") + " (" + (mediumTime / 1000 / 60).ToString("0.##") + "min)";
+            decimal slowTime = ((65536 / Convert.ToInt16(comboBoxSlowResolution.SelectedItem.ToString())) * (numericUpDownSlowAcumulate.Value + numericUpDownSlowDeadTime.Value));
+            slowTimeLabel.Text = slowTime.ToString("# ### ### ### ###") + " (" + (slowTime / 1000 / 60).ToString("0.##") + "min)";
 
         }
     }

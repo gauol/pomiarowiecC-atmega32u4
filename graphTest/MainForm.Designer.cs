@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonStartFast = new System.Windows.Forms.Button();
@@ -59,9 +57,12 @@
             this.WaveLenghtLabel = new System.Windows.Forms.Label();
             this.WMserialPort = new System.IO.Ports.SerialPort(this.components);
             this.WLInforLabel = new System.Windows.Forms.Label();
+            this.MnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MnumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -69,14 +70,12 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.MajorGrid.LineWidth = 0;
-            chartArea1.AxisX2.MajorGrid.LineWidth = 0;
-            chartArea1.AxisY.MajorGrid.LineWidth = 0;
-            chartArea1.AxisY2.MajorGrid.LineWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.AxisX.MajorGrid.LineWidth = 0;
+            chartArea3.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea3.AxisY.MajorGrid.LineWidth = 0;
+            chartArea3.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(822, 403);
@@ -99,14 +98,12 @@
             this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.AxisX.MajorGrid.LineWidth = 0;
-            chartArea2.AxisX2.MajorGrid.LineWidth = 0;
-            chartArea2.AxisY.MajorGrid.LineWidth = 0;
-            chartArea2.AxisY2.MajorGrid.LineWidth = 0;
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
+            chartArea4.AxisX.MajorGrid.LineWidth = 0;
+            chartArea4.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea4.AxisY.MajorGrid.LineWidth = 0;
+            chartArea4.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
             this.chart2.Location = new System.Drawing.Point(3, 412);
             this.chart2.Name = "chart2";
             this.chart2.Size = new System.Drawing.Size(822, 162);
@@ -279,6 +276,7 @@
             // 
             // stopButton
             // 
+            this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.stopButton.Location = new System.Drawing.Point(1004, 269);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(96, 41);
@@ -289,6 +287,7 @@
             // 
             // saveToMESbutton
             // 
+            this.saveToMESbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.saveToMESbutton.Location = new System.Drawing.Point(979, 173);
             this.saveToMESbutton.Name = "saveToMESbutton";
             this.saveToMESbutton.Size = new System.Drawing.Size(121, 23);
@@ -299,6 +298,7 @@
             // 
             // openFileButton
             // 
+            this.openFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.openFileButton.Location = new System.Drawing.Point(852, 143);
             this.openFileButton.Name = "openFileButton";
             this.openFileButton.Size = new System.Drawing.Size(121, 23);
@@ -309,6 +309,7 @@
             // 
             // openMESbutton
             // 
+            this.openMESbutton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.openMESbutton.Location = new System.Drawing.Point(852, 173);
             this.openMESbutton.Name = "openMESbutton";
             this.openMESbutton.Size = new System.Drawing.Size(121, 23);
@@ -319,6 +320,7 @@
             // 
             // WaveLenghtLabel
             // 
+            this.WaveLenghtLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WaveLenghtLabel.AutoSize = true;
             this.WaveLenghtLabel.Location = new System.Drawing.Point(842, 269);
             this.WaveLenghtLabel.Name = "WaveLenghtLabel";
@@ -332,6 +334,7 @@
             // 
             // WLInforLabel
             // 
+            this.WLInforLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.WLInforLabel.AutoSize = true;
             this.WLInforLabel.Location = new System.Drawing.Point(842, 249);
             this.WLInforLabel.Name = "WLInforLabel";
@@ -339,10 +342,30 @@
             this.WLInforLabel.TabIndex = 26;
             this.WLInforLabel.Text = "Długość fali";
             // 
+            // MnumericUpDown
+            // 
+            this.MnumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MnumericUpDown.Location = new System.Drawing.Point(979, 212);
+            this.MnumericUpDown.Name = "MnumericUpDown";
+            this.MnumericUpDown.Size = new System.Drawing.Size(120, 22);
+            this.MnumericUpDown.TabIndex = 27;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(852, 212);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 17);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Numer pomiaru";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.ClientSize = new System.Drawing.Size(1112, 591);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.MnumericUpDown);
             this.Controls.Add(this.WLInforLabel);
             this.Controls.Add(this.WaveLenghtLabel);
             this.Controls.Add(this.openMESbutton);
@@ -369,6 +392,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MnumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,6 +425,8 @@
         private System.Windows.Forms.Label WaveLenghtLabel;
         private System.IO.Ports.SerialPort WMserialPort;
         private System.Windows.Forms.Label WLInforLabel;
+        private System.Windows.Forms.NumericUpDown MnumericUpDown;
+        private System.Windows.Forms.Label label1;
     }
 }
 

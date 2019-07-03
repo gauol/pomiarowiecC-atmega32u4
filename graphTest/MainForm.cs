@@ -117,6 +117,8 @@ namespace graphTest
 
         private void sendTask(UInt32 deadTime, UInt32 resolution, UInt32 accumulate)
         {
+            MnumericUpDown.Value++;
+
             setXrange(65536 / resolution);
 
             clearSeries();
@@ -211,7 +213,8 @@ namespace graphTest
                             seriesCH2.Points.Add(valuesCH2[valueCounter]);
                         if (checkBoxPOWER.Checked)
                             seriesCH3.Points.Add(valuesCH3[valueCounter]);
-
+                        chart1.Invalidate();
+                        chart2.Invalidate();
                         valueCounter++;
                     }
                     else
@@ -281,7 +284,12 @@ namespace graphTest
                     outputFile.WriteLine("#liczba falowa");
                     foreach (int val in Enumerable.Range(0, valueCounter))
                     {
-                        outputFile.WriteLine(valuesCH0[val] + ";" + valuesCH1[val] + ";" + valuesCH2[val] + ";" + valuesCH3[val]);
+                        outputFile.WriteLine
+                            (valuesCH0[val].ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)
+                            + ";" + valuesCH1[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)
+                            + ";" + valuesCH2[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)
+                            + ";" + valuesCH3[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)
+                            );
                     }
                     outputFile.Close();
                 }
@@ -297,21 +305,22 @@ namespace graphTest
         {
             try
             {
-                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Pomiary";
-
-                string date = DateTime.Now.ToString("HH.mm.ss - d/M/yyyy");
-
-                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileNameTextBox.Text + " " + date + waveLenght + ".MES")))
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Pomiary/" + fileNameTextBox.Text;
+                if (!Directory.Exists(docPath))
+                {
+                    Directory.CreateDirectory(docPath);
+                }
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileNameTextBox.Text +"-"+ MnumericUpDown.Value + ".MES")))
                 {
                     outputFile.WriteLine("#" + waveLenght);
                     outputFile.WriteLine("#liczba falowa");
                     foreach (int val in Enumerable.Range(0, valueCounter))
                     {
-                        outputFile.WriteLine(valuesCH0[val]);
+                        outputFile.WriteLine(valuesCH0[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture));
                     }
                     foreach (int val in Enumerable.Range(0, valueCounter))
                     {
-                        outputFile.WriteLine(valuesCH2[val]);
+                        outputFile.WriteLine(valuesCH2[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture));
                     }
                     outputFile.Close();
                 }

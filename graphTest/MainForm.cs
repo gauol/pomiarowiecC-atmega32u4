@@ -35,10 +35,10 @@ namespace graphTest
         string frame;
 
         int valueCounter = 0;
-        double[] valuesCH0 = new double[65536];
-        double[] valuesCH1 = new double[65536];
-        double[] valuesCH2 = new double[65536];
-        double[] valuesCH3 = new double[65536];
+        Int32[] valuesCH0 = new Int32[65536];
+        Int32[] valuesCH1 = new Int32[65536];
+        Int32[] valuesCH2 = new Int32[65536];
+        Int32[] valuesCH3 = new Int32[65536];
 
         Series seriesCH0 = new Series("DaneCH0");
         Series seriesCH1 = new Series("DaneCH1");
@@ -60,10 +60,10 @@ namespace graphTest
             chart2.Series.Add(seriesCH2);
             chart2.Series.Add(seriesCH3);
 
-            chart1.ChartAreas[0].AxisY.Maximum = 15;
+            chart1.ChartAreas[0].AxisY.Maximum = 4096;
             chart1.ChartAreas[0].AxisY.Minimum = 0;
 
-            chart2.ChartAreas[0].AxisY.Maximum = 15;
+            chart2.ChartAreas[0].AxisY.Maximum = 4096;
             chart2.ChartAreas[0].AxisY.Minimum = 0;
 
             loadSettings();
@@ -117,8 +117,6 @@ namespace graphTest
 
         private void sendTask(UInt32 deadTime, UInt32 resolution, UInt32 accumulate)
         {
-            MnumericUpDown.Value++;
-
             setXrange(65536 / resolution);
 
             clearSeries();
@@ -129,6 +127,7 @@ namespace graphTest
             try
             {//A000100640001B   - ramka testujaca
                 serialPort1.Write("A" + deadTime.ToString("0000") + resolution.ToString("0000") + accumulate.ToString("0000") + "B");
+                //serialPort1.Write("B");
             }
             catch (Exception e)
             {
@@ -185,7 +184,13 @@ namespace graphTest
                 if (frame.Length > 0 && frame[0] == 'X')
                     frame = frame.Substring(1, frame.Length - 1);
                 string[] datas = frame.Split('X');
-                foreach(string data in datas)
+
+                seriesCH0.Points.SuspendUpdates();
+                seriesCH1.Points.SuspendUpdates();
+                seriesCH2.Points.SuspendUpdates();
+                seriesCH3.Points.SuspendUpdates();
+
+                foreach (string data in datas)
                 {
                     if (data.Length == 24 && data[0] =='Y')
                     {
@@ -200,10 +205,10 @@ namespace graphTest
                         string ch3val = data.Substring(19, 5);
 
                         // 15 / 4095
-                        valuesCH0[valueCounter] = Double.Parse(ch0val) * 0.0036630036630037;
-                        valuesCH1[valueCounter] = Double.Parse(ch1val) * 0.0036630036630037;
-                        valuesCH2[valueCounter] = Double.Parse(ch2val) * 0.0036630036630037;
-                        valuesCH3[valueCounter] = Double.Parse(ch3val) * 0.0036630036630037;
+                        valuesCH0[valueCounter] = Int32.Parse(ch0val);// * 0.0036630036630037;
+                        valuesCH1[valueCounter] = Int32.Parse(ch1val);// * 0.0036630036630037;
+                        valuesCH2[valueCounter] = Int32.Parse(ch2val);// * 0.0036630036630037;
+                        valuesCH3[valueCounter] = Int32.Parse(ch3val);// * 0.0036630036630037;
 
                         if (checkBoxCH1.Checked)
                             seriesCH0.Points.Add(valuesCH0[valueCounter]);
@@ -213,8 +218,10 @@ namespace graphTest
                             seriesCH2.Points.Add(valuesCH2[valueCounter]);
                         if (checkBoxPOWER.Checked)
                             seriesCH3.Points.Add(valuesCH3[valueCounter]);
-                        chart1.Invalidate();
-                        chart2.Invalidate();
+
+                        //chart1.Invalidate();
+                        //chart2.Update();
+                        //this.Refresh();
                         valueCounter++;
                     }
                     else
@@ -223,8 +230,16 @@ namespace graphTest
                         break;
                     }
                 }
+                seriesCH0.Points.ResumeUpdates();
+                seriesCH1.Points.ResumeUpdates();
+                seriesCH2.Points.ResumeUpdates();
+                seriesCH3.Points.ResumeUpdates();
+
+                chart1.Update();
+                chart2.Update();
+
                 //redrawCharts();
-                
+
             }));
         }
 
@@ -294,6 +309,7 @@ namespace graphTest
                     outputFile.Close();
                 }
                 MessageBox.Show("Zapis pomyślny");
+                MnumericUpDown.Value++;
             }
             catch (Exception ex)
             {
@@ -325,6 +341,7 @@ namespace graphTest
                     outputFile.Close();
                 }
                 MessageBox.Show("Zapis pomyślny");
+                MnumericUpDown.Value++;
             }
             catch (Exception ex)
             {
@@ -352,10 +369,10 @@ namespace graphTest
                 foreach (string line in lines.Skip(2))
                 {
                     string[] datas = line.Split(';');
-                    valuesCH0[valueCounter] = Double.Parse(datas[0]);
-                    valuesCH1[valueCounter] = Double.Parse(datas[1]);
-                    valuesCH2[valueCounter] = Double.Parse(datas[2]);
-                    valuesCH3[valueCounter] = Double.Parse(datas[3]);
+                    valuesCH0[valueCounter] = Int32.Parse(datas[0]);
+                    valuesCH1[valueCounter] = Int32.Parse(datas[1]);
+                    valuesCH2[valueCounter] = Int32.Parse(datas[2]);
+                    valuesCH3[valueCounter] = Int32.Parse(datas[3]);
 
                     valueCounter++;
                 }
@@ -383,14 +400,14 @@ namespace graphTest
 
                 foreach (string line in lines.Skip(values + 2))
                 {
-                    valuesCH2[valueCounter] = Double.Parse(line);
+                    valuesCH2[valueCounter] = Int32.Parse(line);
                     valueCounter++;
                 }
                 valueCounter = 0;
 
                 foreach (string line in lines.Skip(2).Take(values))
                 {
-                    valuesCH0[valueCounter] = Double.Parse(line);
+                    valuesCH0[valueCounter] = Int32.Parse(line);
                     valueCounter++;
                 }
 
@@ -428,6 +445,12 @@ namespace graphTest
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.Refresh();
+            //MnumericUpDown.Value++;
         }
 
 

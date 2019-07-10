@@ -70,14 +70,25 @@
             this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea3.AxisX.LineColor = System.Drawing.Color.BlanchedAlmond;
             chartArea3.AxisX.MajorGrid.LineWidth = 0;
+            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Linen;
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea3.AxisX2.LineColor = System.Drawing.Color.Linen;
             chartArea3.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea3.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
             chartArea3.AxisY.MajorGrid.LineWidth = 0;
+            chartArea3.AxisY2.LineColor = System.Drawing.Color.Linen;
             chartArea3.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea3.BackColor = System.Drawing.Color.DarkSlateGray;
             chartArea3.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
             this.chart1.Size = new System.Drawing.Size(822, 403);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -98,14 +109,21 @@
             this.chart2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart2.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea4.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea4.AxisX.LineColor = System.Drawing.Color.Linen;
             chartArea4.AxisX.MajorGrid.LineWidth = 0;
             chartArea4.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea4.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea4.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
             chartArea4.AxisY.MajorGrid.LineWidth = 0;
             chartArea4.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea4.BackColor = System.Drawing.Color.DarkSlateGray;
             chartArea4.Name = "ChartArea1";
             this.chart2.ChartAreas.Add(chartArea4);
             this.chart2.Location = new System.Drawing.Point(3, 412);
             this.chart2.Name = "chart2";
+            this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
             this.chart2.Size = new System.Drawing.Size(822, 162);
             this.chart2.TabIndex = 2;
             this.chart2.Text = "chart2";
@@ -153,9 +171,9 @@
             this.checkBoxCH1.AutoSize = true;
             this.checkBoxCH1.Checked = true;
             this.checkBoxCH1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH1.Location = new System.Drawing.Point(842, 68);
+            this.checkBoxCH1.Location = new System.Drawing.Point(852, 68);
             this.checkBoxCH1.Name = "checkBoxCH1";
-            this.checkBoxCH1.Size = new System.Drawing.Size(57, 21);
+            this.checkBoxCH1.Size = new System.Drawing.Size(47, 17);
             this.checkBoxCH1.TabIndex = 6;
             this.checkBoxCH1.Text = "CH1";
             this.checkBoxCH1.UseVisualStyleBackColor = true;
@@ -167,9 +185,9 @@
             this.checkBoxCH2.AutoSize = true;
             this.checkBoxCH2.Checked = true;
             this.checkBoxCH2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH2.Location = new System.Drawing.Point(842, 95);
+            this.checkBoxCH2.Location = new System.Drawing.Point(852, 95);
             this.checkBoxCH2.Name = "checkBoxCH2";
-            this.checkBoxCH2.Size = new System.Drawing.Size(57, 21);
+            this.checkBoxCH2.Size = new System.Drawing.Size(47, 17);
             this.checkBoxCH2.TabIndex = 7;
             this.checkBoxCH2.Text = "CH2";
             this.checkBoxCH2.UseVisualStyleBackColor = true;
@@ -205,14 +223,15 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // fileNameTextBox
             // 
             this.fileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fileNameTextBox.Location = new System.Drawing.Point(979, 115);
             this.fileNameTextBox.Name = "fileNameTextBox";
-            this.fileNameTextBox.Size = new System.Drawing.Size(121, 22);
+            this.fileNameTextBox.Size = new System.Drawing.Size(121, 20);
             this.fileNameTextBox.TabIndex = 12;
             this.fileNameTextBox.TextChanged += new System.EventHandler(this.textBoxDelay_TextChanged);
             // 
@@ -250,7 +269,7 @@
             this.comboBoxSerialPort.FormattingEnabled = true;
             this.comboBoxSerialPort.Location = new System.Drawing.Point(979, 41);
             this.comboBoxSerialPort.Name = "comboBoxSerialPort";
-            this.comboBoxSerialPort.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxSerialPort.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSerialPort.TabIndex = 18;
             // 
             // saveToFileButton
@@ -270,7 +289,7 @@
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Location = new System.Drawing.Point(976, 95);
             this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(84, 17);
+            this.fileNameLabel.Size = new System.Drawing.Size(66, 13);
             this.fileNameLabel.TabIndex = 20;
             this.fileNameLabel.Text = "Nazwa Pliku";
             // 
@@ -324,7 +343,7 @@
             this.WaveLenghtLabel.AutoSize = true;
             this.WaveLenghtLabel.Location = new System.Drawing.Point(842, 269);
             this.WaveLenghtLabel.Name = "WaveLenghtLabel";
-            this.WaveLenghtLabel.Size = new System.Drawing.Size(16, 17);
+            this.WaveLenghtLabel.Size = new System.Drawing.Size(13, 13);
             this.WaveLenghtLabel.TabIndex = 25;
             this.WaveLenghtLabel.Text = "0";
             // 
@@ -338,7 +357,7 @@
             this.WLInforLabel.AutoSize = true;
             this.WLInforLabel.Location = new System.Drawing.Point(842, 249);
             this.WLInforLabel.Name = "WLInforLabel";
-            this.WLInforLabel.Size = new System.Drawing.Size(81, 17);
+            this.WLInforLabel.Size = new System.Drawing.Size(64, 13);
             this.WLInforLabel.TabIndex = 26;
             this.WLInforLabel.Text = "Długość fali";
             // 
@@ -347,7 +366,7 @@
             this.MnumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MnumericUpDown.Location = new System.Drawing.Point(979, 212);
             this.MnumericUpDown.Name = "MnumericUpDown";
-            this.MnumericUpDown.Size = new System.Drawing.Size(120, 22);
+            this.MnumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.MnumericUpDown.TabIndex = 27;
             // 
             // label1
@@ -356,13 +375,14 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(852, 212);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 17);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 28;
             this.label1.Text = "Numer pomiaru";
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(1112, 591);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MnumericUpDown);

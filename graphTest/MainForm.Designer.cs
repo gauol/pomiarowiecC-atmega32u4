@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonStartFast = new System.Windows.Forms.Button();
@@ -59,6 +59,8 @@
             this.WLInforLabel = new System.Windows.Forms.Label();
             this.MnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.startStopButton = new System.Windows.Forms.Button();
+            this.nextStepButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -71,21 +73,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea3.AxisX.LineColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea3.AxisX.MajorGrid.LineWidth = 0;
-            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Linen;
-            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.White;
-            chartArea3.AxisX2.LineColor = System.Drawing.Color.Linen;
-            chartArea3.AxisX2.MajorGrid.LineWidth = 0;
-            chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea3.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea3.AxisY.MajorGrid.LineWidth = 0;
-            chartArea3.AxisY2.LineColor = System.Drawing.Color.Linen;
-            chartArea3.AxisY2.MajorGrid.LineWidth = 0;
-            chartArea3.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea1.AxisX.MajorGrid.LineWidth = 0;
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Linen;
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.White;
+            chartArea1.AxisX2.LineColor = System.Drawing.Color.Linen;
+            chartArea1.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea1.AxisY.MajorGrid.LineWidth = 0;
+            chartArea1.AxisY2.LineColor = System.Drawing.Color.Linen;
+            chartArea1.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea1.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(3, 3);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
@@ -110,17 +112,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chart2.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea4.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.Linen;
-            chartArea4.AxisX.MajorGrid.LineWidth = 0;
-            chartArea4.AxisX2.MajorGrid.LineWidth = 0;
-            chartArea4.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
-            chartArea4.AxisY.MajorGrid.LineWidth = 0;
-            chartArea4.AxisY2.MajorGrid.LineWidth = 0;
-            chartArea4.BackColor = System.Drawing.Color.DarkSlateGray;
-            chartArea4.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.Linen;
+            chartArea2.AxisX.MajorGrid.LineWidth = 0;
+            chartArea2.AxisX2.MajorGrid.LineWidth = 0;
+            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.BlanchedAlmond;
+            chartArea2.AxisY.MajorGrid.LineWidth = 0;
+            chartArea2.AxisY2.MajorGrid.LineWidth = 0;
+            chartArea2.BackColor = System.Drawing.Color.DarkSlateGray;
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
             this.chart2.Location = new System.Drawing.Point(3, 412);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Light;
@@ -171,9 +173,9 @@
             this.checkBoxCH1.AutoSize = true;
             this.checkBoxCH1.Checked = true;
             this.checkBoxCH1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH1.Location = new System.Drawing.Point(852, 68);
+            this.checkBoxCH1.Location = new System.Drawing.Point(842, 68);
             this.checkBoxCH1.Name = "checkBoxCH1";
-            this.checkBoxCH1.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxCH1.Size = new System.Drawing.Size(57, 21);
             this.checkBoxCH1.TabIndex = 6;
             this.checkBoxCH1.Text = "CH1";
             this.checkBoxCH1.UseVisualStyleBackColor = true;
@@ -185,9 +187,9 @@
             this.checkBoxCH2.AutoSize = true;
             this.checkBoxCH2.Checked = true;
             this.checkBoxCH2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxCH2.Location = new System.Drawing.Point(852, 95);
+            this.checkBoxCH2.Location = new System.Drawing.Point(842, 95);
             this.checkBoxCH2.Name = "checkBoxCH2";
-            this.checkBoxCH2.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxCH2.Size = new System.Drawing.Size(57, 21);
             this.checkBoxCH2.TabIndex = 7;
             this.checkBoxCH2.Text = "CH2";
             this.checkBoxCH2.UseVisualStyleBackColor = true;
@@ -231,7 +233,7 @@
             this.fileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fileNameTextBox.Location = new System.Drawing.Point(979, 115);
             this.fileNameTextBox.Name = "fileNameTextBox";
-            this.fileNameTextBox.Size = new System.Drawing.Size(121, 20);
+            this.fileNameTextBox.Size = new System.Drawing.Size(121, 22);
             this.fileNameTextBox.TabIndex = 12;
             this.fileNameTextBox.TextChanged += new System.EventHandler(this.textBoxDelay_TextChanged);
             // 
@@ -269,7 +271,7 @@
             this.comboBoxSerialPort.FormattingEnabled = true;
             this.comboBoxSerialPort.Location = new System.Drawing.Point(979, 41);
             this.comboBoxSerialPort.Name = "comboBoxSerialPort";
-            this.comboBoxSerialPort.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSerialPort.Size = new System.Drawing.Size(121, 24);
             this.comboBoxSerialPort.TabIndex = 18;
             // 
             // saveToFileButton
@@ -289,7 +291,7 @@
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Location = new System.Drawing.Point(976, 95);
             this.fileNameLabel.Name = "fileNameLabel";
-            this.fileNameLabel.Size = new System.Drawing.Size(66, 13);
+            this.fileNameLabel.Size = new System.Drawing.Size(84, 17);
             this.fileNameLabel.TabIndex = 20;
             this.fileNameLabel.Text = "Nazwa Pliku";
             // 
@@ -300,9 +302,9 @@
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(96, 41);
             this.stopButton.TabIndex = 21;
-            this.stopButton.Text = "STOP!";
+            this.stopButton.Text = "Anuluj pomiar";
             this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            this.stopButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // saveToMESbutton
             // 
@@ -339,25 +341,26 @@
             // 
             // WaveLenghtLabel
             // 
-            this.WaveLenghtLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WaveLenghtLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.WaveLenghtLabel.AutoSize = true;
-            this.WaveLenghtLabel.Location = new System.Drawing.Point(842, 269);
+            this.WaveLenghtLabel.Location = new System.Drawing.Point(839, 358);
             this.WaveLenghtLabel.Name = "WaveLenghtLabel";
-            this.WaveLenghtLabel.Size = new System.Drawing.Size(13, 13);
+            this.WaveLenghtLabel.Size = new System.Drawing.Size(16, 17);
             this.WaveLenghtLabel.TabIndex = 25;
             this.WaveLenghtLabel.Text = "0";
             // 
             // WMserialPort
             // 
+            this.WMserialPort.BaudRate = 19200;
             this.WMserialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.WMserialPort_DataReceived);
             // 
             // WLInforLabel
             // 
-            this.WLInforLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.WLInforLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.WLInforLabel.AutoSize = true;
-            this.WLInforLabel.Location = new System.Drawing.Point(842, 249);
+            this.WLInforLabel.Location = new System.Drawing.Point(839, 345);
             this.WLInforLabel.Name = "WLInforLabel";
-            this.WLInforLabel.Size = new System.Drawing.Size(64, 13);
+            this.WLInforLabel.Size = new System.Drawing.Size(81, 17);
             this.WLInforLabel.TabIndex = 26;
             this.WLInforLabel.Text = "Długość fali";
             // 
@@ -366,7 +369,7 @@
             this.MnumericUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MnumericUpDown.Location = new System.Drawing.Point(979, 212);
             this.MnumericUpDown.Name = "MnumericUpDown";
-            this.MnumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.MnumericUpDown.Size = new System.Drawing.Size(120, 22);
             this.MnumericUpDown.TabIndex = 27;
             // 
             // label1
@@ -375,15 +378,39 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(852, 212);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.Size = new System.Drawing.Size(105, 17);
             this.label1.TabIndex = 28;
             this.label1.Text = "Numer pomiaru";
+            // 
+            // startStopButton
+            // 
+            this.startStopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.startStopButton.Location = new System.Drawing.Point(855, 269);
+            this.startStopButton.Name = "startStopButton";
+            this.startStopButton.Size = new System.Drawing.Size(86, 41);
+            this.startStopButton.TabIndex = 29;
+            this.startStopButton.Text = "START / STOP";
+            this.startStopButton.UseVisualStyleBackColor = true;
+            this.startStopButton.Click += new System.EventHandler(this.startStopButton_Click);
+            // 
+            // nextStepButton
+            // 
+            this.nextStepButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.nextStepButton.Location = new System.Drawing.Point(948, 269);
+            this.nextStepButton.Name = "nextStepButton";
+            this.nextStepButton.Size = new System.Drawing.Size(31, 41);
+            this.nextStepButton.TabIndex = 30;
+            this.nextStepButton.Text = "+1";
+            this.nextStepButton.UseVisualStyleBackColor = true;
+            this.nextStepButton.Click += new System.EventHandler(this.nextStepButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackColor = System.Drawing.Color.CadetBlue;
             this.ClientSize = new System.Drawing.Size(1112, 591);
+            this.Controls.Add(this.nextStepButton);
+            this.Controls.Add(this.startStopButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MnumericUpDown);
             this.Controls.Add(this.WLInforLabel);
@@ -447,6 +474,8 @@
         private System.Windows.Forms.Label WLInforLabel;
         private System.Windows.Forms.NumericUpDown MnumericUpDown;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button startStopButton;
+        private System.Windows.Forms.Button nextStepButton;
     }
 }
 

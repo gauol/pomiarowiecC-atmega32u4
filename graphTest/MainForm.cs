@@ -19,8 +19,11 @@ namespace graphTest
     public partial class MainForm : Form
     {
         Double waveLenght;
+        Double waveLenghtToFile;
+        String wls = ""; // zmienna przechowujaca dane odbierane z miernika długości fali
 
-        UInt32 FastAcumulate;
+        // Parametry skanów
+        UInt32 FastAcumulate;  
         UInt32 MediumAcumulate;
         UInt32 SlowAcumulate;
 
@@ -31,19 +34,25 @@ namespace graphTest
         UInt32 FastResolution;
         UInt32 MediumResolution;
         UInt32 SlowResolution;
+        // Parametry skanów
 
-        string frame;
+        string frame; // zmienna przechowująca dane odbierane z urządzenia pomiarowego
 
-        int valueCounter = 0;
+        int valueCounter = 0; // licznik który pomiar został odebrany
+
+        // odebrane wartości pomiarów
         Int32[] valuesCH0 = new Int32[65536];
         Int32[] valuesCH1 = new Int32[65536];
         Int32[] valuesCH2 = new Int32[65536];
         Int32[] valuesCH3 = new Int32[65536];
+        // odebrane wartości pomiarów
 
+        // zmienne wykresu z danymi
         Series seriesCH0 = new Series("DaneCH0");
         Series seriesCH1 = new Series("DaneCH1");
         Series seriesCH2 = new Series("Marker CH2");
         Series seriesCH3 = new Series("Moc CH3");
+        // zmienne wykresu z danymi
 
         public MainForm()
         {
@@ -126,7 +135,8 @@ namespace graphTest
 
             try
             {//A000100640001B   - ramka testujaca
-                serialPort1.Write("A" + deadTime.ToString("0000") + resolution.ToString("0000") + accumulate.ToString("0000") + "B");
+                waveLenghtToFile = waveLenght;
+                serialPort1.Write("CA" + deadTime.ToString("0000") + resolution.ToString("0000") + accumulate.ToString("0000") + "B");
                 //serialPort1.Write("B");
             }
             catch (Exception e)
@@ -289,8 +299,11 @@ namespace graphTest
         {
             try
             {
-                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Pomiary";
-
+                string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Pomiary" + fileNameTextBox.Text;
+                if (!Directory.Exists(docPath))
+                {
+                    Directory.CreateDirectory(docPath);
+                }
                 string date = DateTime.Now.ToString("HH.mm.ss - d/M/yyyy");
 
                 using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileNameTextBox.Text + " " + date + waveLenght + ".txt")))
@@ -328,8 +341,8 @@ namespace graphTest
                 }
                 using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, fileNameTextBox.Text +"-"+ MnumericUpDown.Value + ".MES")))
                 {
-                    outputFile.WriteLine("#" + waveLenght);
-                    outputFile.WriteLine("#liczba falowa");
+                    outputFile.WriteLine("#" + waveLenghtToFile.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture));
+                    outputFile.WriteLine("#");
                     foreach (int val in Enumerable.Range(0, valueCounter))
                     {
                         outputFile.WriteLine(valuesCH0[val].ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture));
@@ -349,11 +362,6 @@ namespace graphTest
             }
         }
 
-        private void stopButton_Click(object sender, EventArgs e)
-        {
-            serialPort1.Write("S");
-        }
-
         private void openFileButton_Click(object sender, EventArgs e)
         {
             valueCounter = 0;
@@ -369,10 +377,10 @@ namespace graphTest
                 foreach (string line in lines.Skip(2))
                 {
                     string[] datas = line.Split(';');
-                    valuesCH0[valueCounter] = Int32.Parse(datas[0]);
-                    valuesCH1[valueCounter] = Int32.Parse(datas[1]);
-                    valuesCH2[valueCounter] = Int32.Parse(datas[2]);
-                    valuesCH3[valueCounter] = Int32.Parse(datas[3]);
+                    valuesCH0[valueCounter] = (Int32)Double.Parse(datas[0], CultureInfo.InvariantCulture);
+                    valuesCH1[valueCounter] = (Int32)Double.Parse(datas[1], CultureInfo.InvariantCulture);
+                    valuesCH2[valueCounter] = (Int32)Double.Parse(datas[2], CultureInfo.InvariantCulture);
+                    valuesCH3[valueCounter] = (Int32)Double.Parse(datas[3], CultureInfo.InvariantCulture);
 
                     valueCounter++;
                 }
@@ -400,14 +408,14 @@ namespace graphTest
 
                 foreach (string line in lines.Skip(values + 2))
                 {
-                    valuesCH2[valueCounter] = Int32.Parse(line);
+                    valuesCH2[valueCounter] = (Int32) Double.Parse(line, CultureInfo.InvariantCulture);
                     valueCounter++;
                 }
                 valueCounter = 0;
 
                 foreach (string line in lines.Skip(2).Take(values))
                 {
-                    valuesCH0[valueCounter] = Int32.Parse(line);
+                    valuesCH0[valueCounter] = (Int32) Double.Parse(line, CultureInfo.InvariantCulture);
                     valueCounter++;
                 }
 
@@ -427,15 +435,16 @@ namespace graphTest
             {
                 this.Invoke(new Action(delegate ()
                 {
-                string data = WMserialPort.ReadExisting();
-                    string[] datas = data.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                wls += WMserialPort.ReadExisting();
+                    string[] datas = wls.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                     foreach (string line in datas)
                     {
-                        if (line.Length == 21)
+                        if (line.Length >= 21)
                         {
-                            var sbstr = line.Substring(4, 6);
+                            var sbstr = line.Substring(1, 10);
                             waveLenght = Double.Parse(sbstr, CultureInfo.InvariantCulture);
                             WaveLenghtLabel.Text = waveLenght.ToString();
+                            wls = "";
                         }
     
                     }
@@ -443,7 +452,7 @@ namespace graphTest
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                //MessageBox.Show(ex.Message.ToString());
             }
         }
 
@@ -453,6 +462,20 @@ namespace graphTest
             //MnumericUpDown.Value++;
         }
 
+        private void startStopButton_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("S");
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("C");
+        }
+
+        private void nextStepButton_Click(object sender, EventArgs e)
+        {
+            serialPort1.Write("N");
+        }
 
         //public void callThread()
         //{

@@ -66,7 +66,7 @@
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(569, 474);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(100, 28);
             this.buttonSave.TabIndex = 0;
@@ -77,7 +77,7 @@
             // numericUpDownFastAcumulate
             // 
             this.numericUpDownFastAcumulate.Location = new System.Drawing.Point(8, 23);
-            this.numericUpDownFastAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownFastAcumulate.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownFastAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -104,9 +104,9 @@
             this.groupBoxFast.Controls.Add(this.numericUpDownFastDeadTime);
             this.groupBoxFast.Controls.Add(this.numericUpDownFastAcumulate);
             this.groupBoxFast.Location = new System.Drawing.Point(16, 84);
-            this.groupBoxFast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFast.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxFast.Name = "groupBoxFast";
-            this.groupBoxFast.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxFast.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxFast.Size = new System.Drawing.Size(831, 68);
             this.groupBoxFast.TabIndex = 3;
             this.groupBoxFast.TabStop = false;
@@ -136,7 +136,7 @@
             "64",
             "128"});
             this.comboBoxFastResolution.Location = new System.Drawing.Point(344, 23);
-            this.comboBoxFastResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxFastResolution.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxFastResolution.Name = "comboBoxFastResolution";
             this.comboBoxFastResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxFastResolution.TabIndex = 6;
@@ -144,7 +144,7 @@
             // numericUpDownFastDeadTime
             // 
             this.numericUpDownFastDeadTime.Location = new System.Drawing.Point(176, 23);
-            this.numericUpDownFastDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownFastDeadTime.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownFastDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -181,9 +181,9 @@
             this.groupBox1.Controls.Add(this.numericUpDownMediumDeadTime);
             this.groupBox1.Controls.Add(this.numericUpDownMediumAcumulate);
             this.groupBox1.Location = new System.Drawing.Point(16, 159);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(831, 68);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -211,7 +211,7 @@
             "16",
             "32"});
             this.comboBoxMediumResolution.Location = new System.Drawing.Point(344, 23);
-            this.comboBoxMediumResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxMediumResolution.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxMediumResolution.Name = "comboBoxMediumResolution";
             this.comboBoxMediumResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxMediumResolution.TabIndex = 6;
@@ -219,7 +219,7 @@
             // numericUpDownMediumDeadTime
             // 
             this.numericUpDownMediumDeadTime.Location = new System.Drawing.Point(176, 23);
-            this.numericUpDownMediumDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownMediumDeadTime.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownMediumDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -232,7 +232,7 @@
             // numericUpDownMediumAcumulate
             // 
             this.numericUpDownMediumAcumulate.Location = new System.Drawing.Point(8, 23);
-            this.numericUpDownMediumAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownMediumAcumulate.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownMediumAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -249,9 +249,9 @@
             this.groupBox2.Controls.Add(this.numericUpDownSlowDeadTime);
             this.groupBox2.Controls.Add(this.numericUpDownSlowAcumulate);
             this.groupBox2.Location = new System.Drawing.Point(16, 234);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(831, 68);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
@@ -279,7 +279,7 @@
             "16",
             "32"});
             this.comboBoxSlowResolution.Location = new System.Drawing.Point(344, 23);
-            this.comboBoxSlowResolution.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxSlowResolution.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxSlowResolution.Name = "comboBoxSlowResolution";
             this.comboBoxSlowResolution.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSlowResolution.TabIndex = 6;
@@ -287,7 +287,7 @@
             // numericUpDownSlowDeadTime
             // 
             this.numericUpDownSlowDeadTime.Location = new System.Drawing.Point(176, 23);
-            this.numericUpDownSlowDeadTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownSlowDeadTime.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownSlowDeadTime.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -300,7 +300,7 @@
             // numericUpDownSlowAcumulate
             // 
             this.numericUpDownSlowAcumulate.Location = new System.Drawing.Point(8, 23);
-            this.numericUpDownSlowAcumulate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericUpDownSlowAcumulate.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDownSlowAcumulate.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -323,7 +323,7 @@
             // waveMeterCOMportTextBox
             // 
             this.waveMeterCOMportTextBox.Location = new System.Drawing.Point(239, 325);
-            this.waveMeterCOMportTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.waveMeterCOMportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.waveMeterCOMportTextBox.Name = "waveMeterCOMportTextBox";
             this.waveMeterCOMportTextBox.Size = new System.Drawing.Size(132, 22);
             this.waveMeterCOMportTextBox.TabIndex = 9;
@@ -334,9 +334,9 @@
             this.label2.Location = new System.Drawing.Point(616, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(199, 17);
+            this.label2.Size = new System.Drawing.Size(207, 17);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Oriętacyjny czas pomiaru (ms)";
+            this.label2.Text = "Orientacyjny czas pomiaru (ms)";
             // 
             // autoConnectWaveMetercheckBox
             // 
@@ -367,7 +367,7 @@
             this.Controls.Add(this.labelDeadTime);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingsForm";
             this.Text = "Ustawienia";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFastAcumulate)).EndInit();
